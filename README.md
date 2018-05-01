@@ -243,6 +243,58 @@ Now, let's understand what this code is doing.
 
 This code creates an Express server that handles all of the `POST` requests to the Google Vision API via the route `\upload`. The `POST` request is uploading something called `myImage`, which will contain the data of the images you'll be uploading to the app later. The request returns a response JSON that is parsed and any errors are handled when necessary. To start this server, we'll run `node server.js` later, and the server will listen at port `3001` for any changes. 
 
+4. Now, go back to your `App.js` file and add the following code in the return statement of your render function:
+```react
+<div>
+  <header>
+    <h1>CS52's Google Cloud Vision Image Identifier Workshop!</h1>
+  </header>
+  <div className="uploadForm">
+     <h3>Upload Image</h3>
+     <input type="file"/>
+     <button onClick={this.postImg}>Click to identify</button>
+  </div>
+  <div />
+  <h3>{this.state.identification}</h3>
+</div>
+```
+
+These are just some basic HTML components to prepare to allow you to upload photos.
+
+5. Above the render function, add the following function:
+```react
+postImg = () => {
+    var formData = new FormData();
+    formData.append("myImage", this.state.image);
+    fetch("/upload", {
+      method: "POST",
+      body: formData
+    })
+      .then(response => {
+          if(response.status === 200) return response.json();
+          else {
+            console.log(response);
+            return { error: 'there was an error with response' }
+          }
+      }).then(response => {
+        if(response.error) { console.log(response); }
+        else {
+          this.setState({ identification: response })
+        }
+      });
+  };
+```
+
+Uh oh, more HTTP requests 😰. This function actually isn't that complicated when you take another look at it. Can you guess what it does? `postImg` would be presumably called on some action and it takes in the current state of the uploaded image, converts it to an HTTP request-friendly format, and sends it via the response. The function then handles the response, either updating the state `identification` or console logging the error.
+
+6. Now lets go back to the render function. You'll notice that the call to change the state of `image` isn't defined. Can you figure out how to add it in?
+
+*Hint 1: when should the state change be called?
+*Hint 2: set the state of `image` to `e.target.files[0]`.
+
+If you can't figure it out, scroll to the bottom of the README for the answer 😅.
+
+
 ## Summary / What you Learned
 
 * [X] React recap
@@ -256,3 +308,6 @@ This code creates an Express server that handles all of the `POST` requests to t
 ## Resources
 * [Google Cloud Vision API documentation](https://cloud.google.com/vision/docs/)
 * [Google Cloud Vision API sample code](https://github.com/GoogleCloudPlatform/cloud-vision)
+
+### Answer to state change question
+` <input type="file" onChange={e => this.setState({ image: e.target.files[0] })} />`
