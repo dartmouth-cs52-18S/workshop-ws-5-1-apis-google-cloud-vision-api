@@ -387,4 +387,5 @@ We've already added two buttons for you: Label Detection and OCR. Add another bu
 
 ### Answer to state change question
 ` <input type="file" onChange={e => this.setState({ image: e.target.files[0] })} />`
+
 `<input type="file" onChange={e => this.setState({ imageT: e.target.files[0] })} />`
