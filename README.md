@@ -88,7 +88,7 @@ Enter a name into the Service account name field.
 
 From the Role drop-down list, select Project > Owner.
 
-Click Create. A JSON file that contains your key downloads to your computer. Save in your project folder.
+Click Create. A JSON file that contains your key will download to your computer. Save the file in your project folder as `key.json`.
 
 ### Initial Environment Set-up/Checks:
 First check the npm version you have installed currently using `npm -v`
@@ -218,7 +218,7 @@ const upload = multer({ storage: storage });
 const vision = require("@google-cloud/vision");
 const client = new vision.ImageAnnotatorClient({
   keyFilename: '../key.json',
-  project_id: "perceptive-ivy-202402"
+  project_id: "YOUR-PROJECT-NAME"
 });
 
 app.use(bodyParser.json());
