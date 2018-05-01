@@ -155,6 +155,8 @@ The Google API server will return a JSON file that looks something like this:
  In our case, the Express server is used to facilitate the client-server interaction between our app and the Google Cloud Vision API.
 
  Without further ado, let's get started!
+ 
+ ![](https://media.giphy.com/media/lJNoBCvQYp7nq/giphy-downsized-large.gif)
 
 1. In the `src` directory, create a file titled `index.js` and copy and paste the following code into the file:
 
@@ -186,7 +188,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        CS52 Tutorial.
+        Google Visiony things will be happening here soon 👀
       </div>
     );
   }
@@ -195,11 +197,18 @@ class App extends Component {
 export default App;
 ```
 
+No further explanation needed here – at this point, you should be able to create a new React component in your sleep 😴. Now, open you terminal and run `npm start`. A new tab should open in your browse with the app. Ooooh, magic 💥
+
+![](https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif)
+
+(jk, it's actually an `npm` package called `react-scripts`)
+
 ## Summary / What you Learned
 
-* [ ] React recap
-* [ ] Implementing google cloud API
-* [ ] Pros and Cons of Google Cloud Vision
+* [X] React recap
+* [X] Implementing Google Cloud Vision API
+* [X] Intro to APIs
+* [X] Intro to Express
 
 ## Sources
 * This tutorial was based off of [this](https://github.com/brianhallerweb/google_cloud_vision_img_identifier) repo created by `brianhallerweb` on GitHub.
