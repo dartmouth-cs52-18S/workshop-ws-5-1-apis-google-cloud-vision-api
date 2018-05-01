@@ -1,12 +1,12 @@
-# CS52 Workshops:  TITLE OF YOUR WORKSHOP
+# CS52 Workshops:  Google Cloud Vision API
 
-![](http://i.giphy.com/eUh8NINbZf9Ys.gif)
+![](Rimg/google.gif)
 
-Brief motivation here as well as in presentation
+In our presentation we talked about using different APIs like IBM'S Watson, Microsoft's Azure, and Google's Cloud Vision, to quickly add Artificial Intelligence to our applications. We want to introduce you to the Google Cloud API, which will allow you to get insight from images.
 
 ## Overview
 
-Summary of what we're about to do.
+The Google Cloud Vision API allows us to understand the contents of an image. You can use it for label detection, logo detection, explicit content detection, face detection, image attributes, web detection, and more. But, today, we are going to use the Google Cloud Vision API to identify an uploaded image.
 
 ## Setup
 
