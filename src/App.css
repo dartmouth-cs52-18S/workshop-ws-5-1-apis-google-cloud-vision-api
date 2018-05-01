@@ -2,15 +2,32 @@
   padding: 0;
   margin: 0;
 }
+html{
+	background-image: url(https://media.giphy.com/media/HgycnYQCMeJXO/giphy.gif);
+  background-size: cover;
+}
 
 header {
   text-align: center;
-  background-color: #2c3e50;
-  color: white;
+  color: black;
   padding: 65px 0px 90px 0px;
   margin-bottom: 40px;
+  text-shadow: 2px 2px 2px #9E9696;
 }
 
+.button{
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.6), inset 0 -8px 4px -8px rgba(255,255,255,0.2);
+  border-radius: 10px;
+  padding: 1%;
+  background-color: purple;
+  cursor: pointer;
+  color: white;
+  text-shadow: 2px 2px 2px #9E9696;
+}
+.button:hover{
+  opacity: 0.8;
+  font-size: 1.05em;
+}
 .uploadForm {
   text-align: center;
 }
