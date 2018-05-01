@@ -61,7 +61,7 @@ You should be taken to a page that looks like this.
 
 ![](Rimg/apis.png)
 
-Scroll to the p=bottom that has a list of APIs and click `Cloud Vision Api`.
+Scroll to the bottom that has a list of APIs and click `Cloud Vision Api`.
 
 If Cloud Vision is not enabled, you should be taken to a page that looks like this.
 
@@ -91,7 +91,7 @@ From the Role drop-down list, select Project > Owner.
 Click Create. A JSON file that contains your key downloads to your computer. Save in your project folder.
 
 ### Initial Environment Set-up/Checks:
-First check the npm version you have installed currently using 'npm -v'
+First check the npm version you have installed currently using `npm -v`
 If you don't have version `9.8.0` you need to rollback your version.
 Run the following in your terminal:
 
