@@ -79,29 +79,110 @@ node server.js
 
 
 
-## Step by Step
+## Step by Step 🔢
 
-* Explanations of the what **and** the why behind each step. Try to include:
-  * higher level concepts
-  * best practices
+First, fork this repo to get all of the starter code necessary to run the project.
 
-Remember to explain any notation you are using.
+`cd` into the root directory of the repo and run `npm install` to install all of the package dependencies.
 
-```javascript
-/* and use code blocks for any code! */
+:bangbang: **Make sure that you're running version `9.8.0` of node. Otherwise, running `npm install` will cause a lot of nasty errors**
+
+This is going to be a mini React App that takes in an image and returns a label describing what is in the image (image recognition). The React app runs an Express server to send `POST` requests to the Google API server. As a reminder, a `POST` request requests that a web server accepts the data enclosed in the body of the request message. In our case, this data is an image. For example, say we upload the following image:
+
+![](./Rimg/dog.jpg)
+
+The Google API server will return a JSON file that looks something like this:
+
+```json
+{
+  "responses": [
+    {
+      "labelAnnotations": [
+        {
+          "mid": "/m/0bt9lr",
+          "description": "dog",
+          "score": 0.97346616
+        },
+        {
+          "mid": "/m/09686",
+          "description": "vertebrate",
+          "score": 0.85700572
+        },
+        {
+          "mid": "/m/01pm38",
+          "description": "clumber spaniel",
+          "score": 0.84881884
+        },
+        {
+          "mid": "/m/04rky",
+          "description": "mammal",
+          "score": 0.847575
+        },
+        {
+          "mid": "/m/02wbgd",
+          "description": "english cocker spaniel",
+          "score": 0.75829375
+        }
+      ]
+    }
+  ]
+}
 ```
 
-![screen shots are helpful](img/screenshot.png)
+ containing the identification tags for the image sent.
 
-:sunglasses: GitHub markdown files [support emoji notation](http://www.emoji-cheat-sheet.com/)
+ But wait, what's Express?! :scream: Sneak peek to the short assignment coming out today: Express is a server-side JavaScript framework that adds another dimension to the layers of web development that we've already learned. It’s a lightweight framework that gives developers extra, built-in web application features.
 
-Here's a resource for [github markdown](https://guides.github.com/features/mastering-markdown/).
+ In our case, the Express server is used to facilitate the client-server interaction between our app and the Google Cloud Vision API.
 
+ Without further ado, let's get started!
+
+1. In the `src` directory, create a file titled `index.js` and copy and paste the following code into the file:
+
+```react
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
+You should be a React expert by now, so you'll know that this file takes in an `App` component and renders the HTML element with the `#root` id with that component. We could put all of the React code into this file and the app would run just fine; however, as we've learned with Redux, it's better to include the `App` component in a separate file and render it from there because it keeps the app more organized.
+
+2. Also in the `src` directory, create an `App.js` file and copy and paste the following code into the file:
+
+```react
+import React, { Component } from "react";
+import "./App.css";
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      image: "",
+      identification: ""
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        CS52 Tutorial.
+      </div>
+    );
+  }
+}
+
+export default App;
+```
 
 ## Summary / What you Learned
 
 * [ ] can be checkboxes
 
-## Resources
+## Sources
+* This tutorial was based off of [this](https://github.com/brianhallerweb/google_cloud_vision_img_identifier) repo created by `brianhallerweb` on GitHub.
 
-* cite any resources
+## Resources
+* [Google Cloud Vision API documentation](https://cloud.google.com/vision/docs/)
+* [Google Cloud Vision API sample code](https://github.com/GoogleCloudPlatform/cloud-vision)
