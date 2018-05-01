@@ -218,7 +218,7 @@ const upload = multer({ storage: storage });
 const vision = require("@google-cloud/vision");
 const client = new vision.ImageAnnotatorClient({
   keyFilename: '../key.json',
-  project_id: "YOUR-PROJECT-NAME"
+  project_id: "YOUR-PROJECT-ID"
 });
 
 app.use(bodyParser.json());
@@ -257,7 +257,7 @@ app.post("/uploadText", upload.single("myImage"), function(req, res) {
 
 app.listen(3001);
 ```
-Woah, that's a lot of code! Make sure you have the 🔑 `key.json` file in your root directory and that you replace `YOUR-PROJECT-NAME` with the name of the project you created earlier. If you don't remember the name of the project, you can find it in your `key.json` file.
+Woah, that's a lot of code! Make sure you have the 🔑 `key.json` file in your root directory and that you replace `YOUR-PROJECT-ID` with the project id of the project you created earlier.You can find it in your `key.json` file under the `project_id` field.
 
 Now, let's understand what this code is doing.
 
