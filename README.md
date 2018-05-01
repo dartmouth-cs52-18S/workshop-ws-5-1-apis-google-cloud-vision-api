@@ -1,12 +1,12 @@
-# CS52 Workshops:  TITLE OF YOUR WORKSHOP
+# CS52 Workshops:  Google Cloud Vision API
 
-![](http://i.giphy.com/eUh8NINbZf9Ys.gif)
+![](Rimg/google.gif)
 
-Brief motivation here as well as in presentation
+In our presentation we talked about using different APIs like IBM'S Watson, Microsoft's Azure, and Google's Cloud Vision, to quickly add Artificial Intelligence to our applications. We want to introduce you to the Google Cloud API, which will allow you to get insight from images.
 
 ## Overview
 
-Summary of what we're about to do.
+The Google Cloud Vision API allows us to understand the contents of an image. You can use it for label detection, logo detection, explicit content detection, face detection, image attributes, web detection, and more. But, today, we are going to use the Google Cloud Vision API to identify an uploaded image.
 
 ## Setup
 
@@ -47,14 +47,40 @@ Click Set account.
 
 ![the page should look like this](Rimg/enableAPI.png)
 
-Click select a project at the top and choose your project name.
+Click select a project at the top and choose your project name. Then click Open.
+
+You should be at a page that looks like this.
+
+![](Rimg/home.png)
+
+If you don't have the sidebar on the left, click the three horizontal menu bars on the top left.
+
+From this sidebar, click `APIs & Services` and then click `Dashboard`.
+
+You should be taken to a page that looks like this.
+
+![](Rimg/apis.png)
+
+Scroll to the bottom that has a list of APIs and click `Cloud Vision Api`.
+
+If Cloud Vision is not enabled, you should be taken to a page that looks like this.
+
+![](Rimg/vision.png)
+
+Click Enable at the top.
+
+If Cloud Vision is already enabled, you would just see a disable option. So do nothing.
 
 #### Authentication
+If you haven't already, create a new local folder on your computer for the project you're about to start.
+
 To use this client library, you must first authenticate. Complete these steps:
 
 Go to the Create service account key page in the GCP Console: [Service account key page](https://console.cloud.google.com/apis/credentials/serviceaccountkey?_ga=2.231760415.-1003825271.1520127443&project=perceptive-ivy-202402&folder&organizationId)
 
-Make sure your project name is showing at the top and it is the right project (show screenshot)(ours is called demo)
+Make sure your project name is showing at the top and it is the right project. (ours is called demo)
+
+![](Rimg/serviceKey.png)
 
 From the Service account drop-down list, select New service account.
 
@@ -62,21 +88,14 @@ Enter a name into the Service account name field.
 
 From the Role drop-down list, select Project > Owner.
 
-Click Create. A JSON file that contains your key downloads to your computer. Save in project folder.
+Click Create. A JSON file that contains your key downloads to your computer. Save in your project folder.
 
+### Initial Environment Set-up/Checks:
+First check the npm version you have installed currently using `npm -v`
+If you don't have version `9.8.0` you need to rollback your version.
+Run the following in your terminal:
 
-npm install --global node@9.8.0
-npm -v
-
-npm install
-npm start
-
-cd into server
-node server.js
-
-
-
-
+`npm install --global node@9.8.0`
 
 
 ## Step by Step 🔢
