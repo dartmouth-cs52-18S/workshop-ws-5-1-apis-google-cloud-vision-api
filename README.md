@@ -197,11 +197,51 @@ class App extends Component {
 export default App;
 ```
 
-No further explanation needed here – at this point, you should be able to create a new React component in your sleep 😴. Now, open you terminal and run `npm start`. A new tab should open in your browse with the app. Ooooh, magic 💥
+No further explanation needed here – at this point, you should be able to create a new React component in your sleep 😴. Now, open you terminal and run `npm start`. A new tab should open in your browser with the app. Ooooh, magic 💥
 
 ![](https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif)
 
 (jk, it's actually an `npm` package called `react-scripts`)
+
+3. Now, make a new directory called `server` and in it, a new file called `server.js`. This is where our mini-Express server will go. Copy and paste the following code into the file:
+
+```react
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+const multer = require("multer");
+const path = require("path");
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+const vision = require("@google-cloud/vision");
+const client = new vision.ImageAnnotatorClient({
+  keyFilename: '../key.json',
+  project_id: "YOUR-PROJECT-NAME"
+});
+
+app.use(bodyParser.json());
+
+app.post("/upload", upload.single("myImage"), function(req, res) {
+  client
+    .webDetection(req.file.buffer)
+    .then(results => {
+      const webDetection = results[0].webDetection;
+      var identification = { breed: webDetection.webEntities[0].description };
+      console.log(webDetection.webEntities[0].description);
+      res.json(webDetection.webEntities[0].description);
+    })
+    .catch(err => {
+      console.error("ERROR:", err);
+    });
+});
+
+app.listen(3001);
+```
+Woah, that's a lot of code! Make sure you have the 🔑 `key.json` file in your root directory and that you replace `YOUR-PROJECT-NAME` with the name of the project you created earlier. If you don't remember the name of the project, you can find it in your `key.json` file.
+
+Now, let's understand what this code is doing.
+
+This code creates an Express server that handles all of the `POST` requests to the Google Vision API via the route `\upload`. The `POST` request is uploading something called `myImage`, which will contain the data of the images you'll be uploading to the app later. The request returns a response JSON that is parsed and any errors are handled when necessary. To start this server, we'll run `node server.js` later, and the server will listen at port `3001` for any changes. 
 
 ## Summary / What you Learned
 
