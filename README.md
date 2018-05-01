@@ -103,7 +103,7 @@ Run the following in your terminal:
 
 ## Step by Step 🔢
 
-`cd` into the root directory of the repo and run `npm install` to install all of the package dependencies.
+`cd` into the root directory of the repo and run `npm install` to install all of the package dependencies. **Don't run `yarn`. Running `yarn` will overwrite some of the packages needed for this demo to work.**
 
 :bangbang: **Make sure that you're running version `9.8.0` of node. Otherwise, running `npm install` will cause a lot of nasty errors**
 
