@@ -186,7 +186,7 @@ class App extends Component {
       image: "",
       imageT:"",
       identification: "",
-      IdentificationT:""
+      identificationT:""
     };
   }
 
@@ -367,7 +367,11 @@ Run `npm start` again in the root directory of your repo or refresh your browser
 
 Now, open a second tab in your terminal and `cd` into the `server` directory. Once there, run `node server.js`. This will run the server concurrently with your web app. Remember, the server handles all of your requests to the Google Vision API and needs to run in order for your images to be processed correctly.
 
-Navigate back to the browser tab and click on the first button. Upload any image (if you need an image, feel free to use the image of the dog we included earlier – it's in the `Rimg` directory in the repo). Then, click `Click to identify`. Voilà, after a few seconds, a tag will appear below the input fields, effectively identifying your image! Play around with different images and the other button that handles images with text (OCR) to get a feel for the API.
+Navigate back to the browser tab and click on the first button. Upload any image (if you need an image, feel free to use the image of the dog we included earlier – it's in the `Rimg` directory in the repo). Then, click `Click to identify`. Voilà, after a few seconds, a tag will appear below the input fields, effectively identifying your image! This is the output you should see in your terminal running the Express server:
+
+![](Rimg/terminal_output.png)
+
+The words that show up are the labels the Google Vision API is assigning to your image. Play around with different images and the other button that handles images with text (OCR) to get a feel for the API.
 
 ### Extra Credit ⭐
 We've already added two buttons for you: Label Detection and OCR. Add another button for face recognition and get it to work for additional bonus points! (For hints, look at the `server.js` code again and check out the [Google Vision API source code](https://github.com/googleapis/nodejs-vision/blob/master/samples/detect.js) for reference).
