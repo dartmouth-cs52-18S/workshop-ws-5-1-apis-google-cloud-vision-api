@@ -263,7 +263,7 @@ Now, let's understand what this code is doing.
 
 This code creates an Express server that handles all of the POST requests to the Google Vision API via the route \upload. The POST request is uploading something called myImage, which will contain the data of the images you'll be uploading to the app later. The request returns a response JSON that is parsed and any errors are handled when necessary. To start this server, we'll run node server.js later, and the server will listen at port 3001 for any changes. There are two `POST` functions to handle the requests for two different features.
 
-4. Now, go back to your `App.js` file and add the following code in the return statement of your render function:
+4. Now, go back to your `App.js` file and replace the code in the return statement of your render function with this:
 ```react
     <div>
         <header>
