@@ -159,7 +159,7 @@ The Google API server will return a JSON file that looks something like this:
 
  ![](https://media.giphy.com/media/lJNoBCvQYp7nq/giphy-downsized-large.gif)
 
-1. Don't forget to run `yarn`! In the `src` directory, create a file titled `index.js` and copy and paste the following code into the file:
+1. Don't forget to run `npm install`! In the `src` directory, create a file titled `index.js` and copy and paste the following code into the file:
 
 ```react
 import React from 'react';
@@ -171,7 +171,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 ```
 You should be a React expert by now, so you'll know that this file takes in an `App` component and renders the HTML element with the `#root` id with that component. We could put all of the React code into this file and the app would run just fine; however, as we've learned, it's better to include the `App` component in a separate file and render it from there because it keeps the app more organized.
 
-* have `.eslintrc` errors? try running `yarn add --dev eslint-config-airbnb`
+* have `.eslintrc` errors? try running `npm i eslint-config-airbnb`
 
 2. Also in the `src` directory, create an `App.js` file and copy and paste the following code into the file:
 
@@ -208,7 +208,7 @@ No further explanation needed here – at this point, you should be able to crea
 
 (jk, it's actually an `npm` package called `react-scripts`)
 
-3. Now, make a new directory called `server` in the root directory and in it, a new file called `server.js`. This is where our mini-Express server will go. Run `yarn add --dev express` and opy and paste the following code into the file:
+3. Now, make a new directory called `server` in the root directory and in it, a new file called `server.js`. This is where our mini-Express server will go. Copy and paste the following code into the file:
 
 ```react
 const express = require("express");
@@ -264,7 +264,7 @@ Woah, that's a lot of code! Make sure you have the 🔑 `key.json` file in your 
 
 Now, let's understand what this code is doing.
 
-Each function here creates an Express server that handles all of the POST requests to the Google Vision API via the route `\upload` and `/uploadText`. The `POST` request is uploading something called `myImage`, which will contain the data of the images you'll be uploading to the app later. The request returns a response JSON that is parsed and any errors are handled when necessary. To start this server, we'll run `node server.js` later, and the server will listen at port `3001` for any changes. There are two `POST` functions to handle the requests for two different features: label detection and OCR.
+Each function here creates an Express server that handles all of the POST requests to the Google Vision API via the route `/upload` and `/uploadText`. The `POST` request is uploading something called `myImage`, which will contain the data of the images you'll be uploading to the app later. The request returns a response JSON that is parsed and any errors are handled when necessary. To start this server, we'll run `node server.js` later, and the server will listen at port `3001` for any changes. There are two `POST` functions to handle the requests for two different features: label detection and OCR.
 
 4. Now, go back to your `App.js` file and replace the code in the return statement of your render function with this:
 ```react
