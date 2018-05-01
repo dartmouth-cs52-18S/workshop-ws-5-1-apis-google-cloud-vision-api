@@ -1,53 +1,52 @@
-# CS52 Workshops:  Google Cloud Vision API
+# CS52 Workshops:  Google Cloud Vision API ☁️
 
 ![](Rimg/google.gif)
 
-In our presentation we talked about using different APIs like IBM'S Watson, Microsoft's Azure, and Google's Cloud Vision, to quickly add Artificial Intelligence to our applications. We want to introduce you to the Google Cloud API, which will allow you to get insight from images.
+In our presentation we talked about using different APIs like IBM'S Watson, Microsoft's Azure, and Google's Cloud Vision, to quickly add Artificial Intelligence to our applications. We want to introduce you to the Google Cloud API, which will allow you to get really cool, invaluavle insight from images.
 
 ## Overview
 
-The Google Cloud Vision API allows us to understand the contents of an image. You can use it for label detection, logo detection, explicit content detection, face detection, image attributes, web detection, and more. But, today, we are going to use the Google Cloud Vision API to identify an uploaded image.
+The Google Cloud Vision API allows us to understand the contents of an image. You can use it for label detection, logo detection, explicit content detection, face detection, image attributes, web detection, and more. But today, we are going to use the Google Cloud Vision API to identify an uploaded image using label detection (tagging an image with attributes and text recognition (OCR).
+
+![](https://media.giphy.com/media/5icjCvycatqXqBk09y/giphy.gif)
 
 ## Setup
 
 ### Claim your Google Cloud coupon:
-[click here](http://google.force.com/GCPEDU?cid=UzeQ%2BFSDq8F8BkKEc7z4cucNPVp72amu49U8rxFokiNys%2FhH7RJAepaB5I7IWvbC/)
+Click [here](http://google.force.com/GCPEDU?cid=UzeQ%2BFSDq8F8BkKEc7z4cucNPVp72amu49U8rxFokiNys%2FhH7RJAepaB5I7IWvbC/) to obtain your free Google Cloud coupon (thanks Tim!). Google Cloud requires a billing account with a valid credit card, but with this coupon, we'll bypass that entirely.
 
-Enter your Dartmouth email and name. Then go to your email to verify it.
+Enter your Dartmouth email and name. Then go to your email to verify your account.
 
-After verifying your email, you should receive another email with your coupon code. Click the link they provided. You might have to sign in to your google account if you aren’t signed in already.
+After verifying your email, you should receive another email with your coupon code. Click the link they provided. You might have to sign in to your Google account if you aren’t signed in already.
 
 ### Create New Project
-Now you have to create a new project in your google account. [click here](
+Now, create a new project in your google account by clicking [here](
 https://accounts.google.com/ServiceLogin/signinchooser?service=cloudconsole&passive=1209600&osid=1&continue=https%3A%2F%2Fconsole.cloud.google.com%2Fcloud-resource-manager%3F_ga%3D2.56200875.-1003825271.1520127443%26ref%3Dhttps%3A%2F%2Faccounts.google.com%2FLogout%3Fservice%253Dcloudconsole%2526continue%253Dhttps%3A%2F%2Fconsole.cloud.google.com%2Fcloud-resource-manager%3F_ga%25253D2.56200875.-1003825271.1520127443%2526hl%253Den_US&followup=https%3A%2F%2Fconsole.cloud.google.com%2Fcloud-resource-manager%3F_ga%3D2.56200875.-1003825271.1520127443%26ref%3Dhttps%3A%2F%2Faccounts.google.com%2FLogout%3Fservice%253Dcloudconsole%2526continue%253Dhttps%3A%2F%2Fconsole.cloud.google.com%2Fcloud-resource-manager%3F_ga%25253D2.56200875.-1003825271.1520127443%2526hl%253Den_US&flowName=GlifWebSignIn&flowEntry=ServiceLogin)
 
-### Enable billing for project:
-Go to [this link](https://console.cloud.google.com/billing) to see your billing accounts.
+### Enable billing for project 💸
+Go to [this](https://console.cloud.google.com/billing) link to see your billing accounts.
 
-*If you only have one, move on to ENABLE API section.*
+*If you only have one billing account, move on to the ENABLE API section.*
 
-If you have multiple, do the following:
+If you have multiple billing accounts, do the following to set up the project correctly:
 
-1. Go to the Google Cloud Platform Console.
-Open the console left side menu and select Billing.
+1. Go to the Google Cloud Platform Console and open the console left side menu and select `Billing`.
 
-2. If you have more than one billing account, you'll be prompted to select Go to linked billing account to manage the current project's billing.
+2. If you have more than one billing account, you'll be prompted to select `Go to linked billing account` to manage the current project's billing.
 
 3. Under Projects linked to this billing account, locate the name of the project that you want to change billing for, and then click the menu next to it (3 dots).
 
-
-Our project is called demo.
+Our project is called demo, but feel free to call your project anything you want!
 ![the page should look like this](Rimg/billing.png)
 
-Select Change billing account, then choose the desired destination billing account.
-Click Set account.
+Select `Change billing account`, then choose the desired destination for the billing account and click `Set account`.
 
 ### Enable API:
-[click here to enable the API for your project](https://accounts.google.com/ServiceLogin/signinchooser?service=cloudconsole&passive=1209600&osid=1&continue=https%3A%2F%2Fconsole.cloud.google.com%2Fflows%2Fenableapi%3Fapiid%3Dcloudfunctions%2Cpubsub%2Cstorage_api%2Ctranslate%2Cvision.googleapis.com%26redirect%3Dhttps%3A%2F%2Fcloud.google.com%2Ffunctions%2Fdocs%2Ftutorials%2Focr%26_ga%3D2.26854077.-1003825271.1520127443&followup=https%3A%2F%2Fconsole.cloud.google.com%2Fflows%2Fenableapi%3Fapiid%3Dcloudfunctions%2Cpubsub%2Cstorage_api%2Ctranslate%2Cvision.googleapis.com%26redirect%3Dhttps%3A%2F%2Fcloud.google.com%2Ffunctions%2Fdocs%2Ftutorials%2Focr%26_ga%3D2.26854077.-1003825271.1520127443&flowName=GlifWebSignIn&flowEntry=ServiceLogin)
+Click [here](https://accounts.google.com/ServiceLogin/signinchooser?service=cloudconsole&passive=1209600&osid=1&continue=https%3A%2F%2Fconsole.cloud.google.com%2Fflows%2Fenableapi%3Fapiid%3Dcloudfunctions%2Cpubsub%2Cstorage_api%2Ctranslate%2Cvision.googleapis.com%26redirect%3Dhttps%3A%2F%2Fcloud.google.com%2Ffunctions%2Fdocs%2Ftutorials%2Focr%26_ga%3D2.26854077.-1003825271.1520127443&followup=https%3A%2F%2Fconsole.cloud.google.com%2Fflows%2Fenableapi%3Fapiid%3Dcloudfunctions%2Cpubsub%2Cstorage_api%2Ctranslate%2Cvision.googleapis.com%26redirect%3Dhttps%3A%2F%2Fcloud.google.com%2Ffunctions%2Fdocs%2Ftutorials%2Focr%26_ga%3D2.26854077.-1003825271.1520127443&flowName=GlifWebSignIn&flowEntry=ServiceLogin) to enable the API for your project. The page should look like this:
 
-![the page should look like this](Rimg/enableAPI.png)
+![](Rimg/enableAPI.png)
 
-Click select a project at the top and choose your project name. Then click Open.
+Click `select a project` at the top and choose your project name. Then click `Open`.
 
 You should be at a page that looks like this.
 
@@ -61,38 +60,38 @@ You should be taken to a page that looks like this.
 
 ![](Rimg/apis.png)
 
-Scroll to the bottom that has a list of APIs and click `Cloud Vision Api`.
+Scroll to the bottom that has a list of APIs and click `Cloud Vision API`.
 
 If Cloud Vision is not enabled, you should be taken to a page that looks like this.
 
 ![](Rimg/vision.png)
 
-Click Enable at the top.
+Click `Enable` at the top.
 
 If Cloud Vision is already enabled, you would just see a disable option. So do nothing.
 
 #### Authentication
-If you haven't already, create a new local folder on your computer for the project you're about to start.
+If you haven't already, fork this repo to get our starter code.
 
 To use this client library, you must first authenticate. Complete these steps:
 
 Go to the Create service account key page in the GCP Console: [Service account key page](https://console.cloud.google.com/apis/credentials/serviceaccountkey?_ga=2.231760415.-1003825271.1520127443&project=perceptive-ivy-202402&folder&organizationId)
 
-Make sure your project name is showing at the top and it is the right project. (ours is called demo)
+Make sure your project name is showing at the top and it is the right project (ours is called demo).
 
 ![](Rimg/serviceKey.png)
 
-From the Service account drop-down list, select New service account.
+From the Service account drop-down list, select `New service account`.
 
 Enter a name into the Service account name field.
 
-From the Role drop-down list, select Project > Owner.
+From the Role drop-down list, select `Project > Owner`.
 
-Click Create. A JSON file that contains your key will download to your computer. Save the file in your project folder as `key.json`.
+Click `Create`. A JSON file that contains your key will download to your computer. Save the file in your forked repo root directory as `key.json`.
 
 ### Initial Environment Set-up/Checks:
-First check the npm version you have installed currently using `npm -v`
-If you don't have version `9.8.0` you need to rollback your version.
+Check then npm version you have installed currently using `npm -v`
+If you don't have version `9.8.0` **you need to rollback your version. If you don't, the demo won't work.**
 Run the following in your terminal:
 
 `npm install --global node@9.8.0`
@@ -100,13 +99,11 @@ Run the following in your terminal:
 
 ## Step by Step 🔢
 
-First, fork this repo to get all of the starter code necessary to run the project.
-
 `cd` into the root directory of the repo and run `npm install` to install all of the package dependencies.
 
 :bangbang: **Make sure that you're running version `9.8.0` of node. Otherwise, running `npm install` will cause a lot of nasty errors**
 
-This is going to be a mini React App that takes in an image and returns a label describing what is in the image (image recognition). The React app runs an Express server to send `POST` requests to the Google API server. As a reminder, a `POST` request requests that a web server accepts the data enclosed in the body of the request message. In our case, this data is an image. For example, say we upload the following image:
+This is going to be a mini React App that takes in an image and returns a label describing what is in the image (image recognition). The React app runs an Express server to send `POST` requests to the Google API server. As a reminder, a `POST` request requests that a web server accepts the data enclosed in the body of the request message in order to do something with that data. In our case, this data is an image. For example, say we upload the following image:
 
 ![](./Rimg/dog.jpg)
 
@@ -168,7 +165,7 @@ import App from "./App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
-You should be a React expert by now, so you'll know that this file takes in an `App` component and renders the HTML element with the `#root` id with that component. We could put all of the React code into this file and the app would run just fine; however, as we've learned with Redux, it's better to include the `App` component in a separate file and render it from there because it keeps the app more organized.
+You should be a React expert by now, so you'll know that this file takes in an `App` component and renders the HTML element with the `#root` id with that component. We could put all of the React code into this file and the app would run just fine; however, as we've learned, it's better to include the `App` component in a separate file and render it from there because it keeps the app more organized.
 
 2. Also in the `src` directory, create an `App.js` file and copy and paste the following code into the file:
 
@@ -199,7 +196,7 @@ class App extends Component {
 export default App;
 ```
 
-No further explanation needed here – at this point, you should be able to create a new React component in your sleep 😴. Now, open you terminal and run `npm start`. A new tab should open in your browser with the app. Ooooh, magic 💥
+No further explanation needed here – at this point, you should be able to create a new React component in your sleep 😴. Now, open your terminal and run `npm start`. A new tab should open in your browser with the app. Ooooh, magic 💥
 
 ![](https://media.giphy.com/media/12NUbkX6p4xOO4/giphy.gif)
 
@@ -261,7 +258,7 @@ Woah, that's a lot of code! Make sure you have the 🔑 `key.json` file in your 
 
 Now, let's understand what this code is doing.
 
-This code creates an Express server that handles all of the POST requests to the Google Vision API via the route \upload. The POST request is uploading something called myImage, which will contain the data of the images you'll be uploading to the app later. The request returns a response JSON that is parsed and any errors are handled when necessary. To start this server, we'll run node server.js later, and the server will listen at port 3001 for any changes. There are two `POST` functions to handle the requests for two different features.
+Each function here creates an Express server that handles all of the POST requests to the Google Vision API via the route `\upload` and `/uploadText`. The `POST` request is uploading something called `myImage`, which will contain the data of the images you'll be uploading to the app later. The request returns a response JSON that is parsed and any errors are handled when necessary. To start this server, we'll run `node server.js` later, and the server will listen at port `3001` for any changes. There are two `POST` functions to handle the requests for two different features: label detection and OCR.
 
 4. Now, go back to your `App.js` file and replace the code in the return statement of your render function with this:
 ```react
@@ -290,9 +287,9 @@ This code creates an Express server that handles all of the POST requests to t
     </div>
 ```
 
-These are just some basic HTML components to prepare to allow you to upload photos.
+These are just some basic HTML components to prepare to allow you to upload photos. Nothing too complicated. You can refresh your browser tab to see the changes if they're not getting displayed
 
-5. Above the render function, add the following function:
+5. Above the render function, add the following functions:
 ```react
   postImg = () => {
     var formData = new FormData();
@@ -340,9 +337,9 @@ These are just some basic HTML components to prepare to allow you to upload phot
 
 ```
 
-Uh oh, more HTTP requests 😰. This function actually isn't that complicated when you take another look at it. Can you guess what it does? `postImg` would be presumably called on some action and it takes in the current state of the uploaded image, converts it to an HTTP request-friendly format, and sends it via the response. The function then handles the response, either updating the state `identification` or console logging the error. `postImgText` does the same thing, except it handles images with text in them.
+Uh oh, more HTTP requests 😰. This function actually isn't that complicated when you take another look at it. Can you guess what it does? `postImg` and `postImgText` would be presumably called on some action and they take in the current state of the uploaded image, convert it to an HTTP request-friendly format, and send it via the response. The functions then handle the response, either updating the state `identification` or console logging the error.
 
-6. Now lets go back to the render function. You'll notice that the call to change the state of `image` and `imageT` aren't defined. Can you figure out how to add them in?
+6. Now lets go back to the render function. You'll notice that the calls to change the state of `image` and `imageT` aren't defined. Can you figure out how to add them in?
 
 *Hint 1: when should the state change be called?
 
@@ -360,7 +357,7 @@ Run `npm start` again in the root directory of your repo or refresh your browser
 
 ![](Rimg/fianl.png)
 
-Now, open a second tab in your terminal and `cd` into the `server` directory. Once there, run `node server.js`. This will run the server concurrently with your web app. Remember, the server handels all of your reuqests to the Google Vision API and needs to run in order for your images to be processed correctly. 
+Now, open a second tab in your terminal and `cd` into the `server` directory. Once there, run `node server.js`. This will run the server concurrently with your web app. Remember, the server handles all of your reuqests to the Google Vision API and needs to run in order for your images to be processed correctly. 
 
 Navigate back to the browser tab and click on the first button. Upload any image (if you need an image, feel free to use the image of the dog we included earlier – it's in the `Rimg` directory in the repo). Then, click `Click to identify`. Voilà, after a few seconds, a tag will appear below the input fields, effectively identifying your image! Play around with different images and the other button that handles images with text (OCR) to get a feel for the API. 
 
