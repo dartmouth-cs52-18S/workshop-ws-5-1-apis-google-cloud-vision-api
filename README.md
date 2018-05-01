@@ -303,7 +303,7 @@ Great, now you should have all the code you'll need to run the app!
 
 Run `npm start` again in the root directory of your repo or refresh your browser tag. This is what you should see:
 
-![](Rimg/Screen Shot 2018-05-01 at 2.46.39 AM.png)
+![](Rimg/fianl.png)
 
 Now, open a second tab in your terminal and `cd` into the `server` directory. Once there, run `node server.js`. This will run the server concurrently with your web app. Remember, the server handels all of your reuqests to the Google Vision API and needs to run in order for your images to be processed correctly. 
 
