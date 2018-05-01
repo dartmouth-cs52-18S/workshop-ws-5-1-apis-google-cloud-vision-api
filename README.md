@@ -287,7 +287,9 @@ Each function here creates an Express server that handles all of the POST requ
     </div>
 ```
 
-These are just some basic HTML components to prepare to allow you to upload photos. Nothing too complicated. You can refresh your browser tab to see the changes if they're not getting displayed
+These are just some basic HTML components to prepare to allow you to upload photos. Nothing too complicated. You can refresh your browser tab to see the changes if they're not getting displayed.
+
+![](https://media.giphy.com/media/13d2jHlSlxklVe/giphy.gif)
 
 5. Above the render function, add the following functions:
 ```react
@@ -374,6 +376,8 @@ We've already added two buttons for you: Label Detection and OCR. Add another bu
 ## What to turn in
 * The URL to your forked repo
 * A screen shot of the face recognition button working for you if you attempted the extra credit
+
+![](https://media.giphy.com/media/lD76yTC5zxZPG/giphy.gif)
 
 ## Sources
 * This tutorial was based off of [this](https://github.com/brianhallerweb/google_cloud_vision_img_identifier) repo created by `brianhallerweb` on GitHub.
