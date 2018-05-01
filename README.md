@@ -161,7 +161,7 @@ The Google API server will return a JSON file that looks something like this:
 
 1. Don't forget to run `npm install`! In the `src` directory, create a file titled `index.js` and copy and paste the following code into the file:
 
-```react
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -175,7 +175,7 @@ You should be a React expert by now, so you'll know that this file takes in an `
 
 2. Also in the `src` directory, create an `App.js` file and copy and paste the following code into the file:
 
-```react
+```javascript
 import React, { Component } from "react";
 import "./App.css";
 
@@ -210,7 +210,7 @@ No further explanation needed here – at this point, you should be able to crea
 
 3. Now, make a new directory called `server` in the root directory and in it, a new file called `server.js`. This is where our mini-Express server will go. Copy and paste the following code into the file:
 
-```react
+```javascript
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -267,7 +267,7 @@ Now, let's understand what this code is doing.
 Each function here creates an Express server that handles all of the POST requests to the Google Vision API via the route `/upload` and `/uploadText`. The `POST` request is uploading something called `myImage`, which will contain the data of the images you'll be uploading to the app later. The request returns a response JSON that is parsed and any errors are handled when necessary. To start this server, we'll run `node server.js` later, and the server will listen at port `3001` for any changes. There are two `POST` functions to handle the requests for two different features: label detection and OCR.
 
 4. Now, go back to your `App.js` file and replace the code in the return statement of your render function with this:
-```react
+```javascript
     <div>
         <header>
           <h1>Google Cloud Vision Image Identifier</h1>
@@ -298,7 +298,7 @@ These are just some basic HTML components to prepare to allow you to upload phot
 ![](https://media.giphy.com/media/13d2jHlSlxklVe/giphy.gif)
 
 5. Above the render function, add the following functions:
-```react
+```javascript
   postImg = () => {
     var formData = new FormData();
     formData.append("myImage", this.state.image);
