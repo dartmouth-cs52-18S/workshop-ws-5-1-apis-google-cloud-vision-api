@@ -181,7 +181,9 @@ class App extends Component {
     super(props);
     this.state = {
       image: "",
-      identification: ""
+      imageT:"",
+      identification: "",
+      IdentificationT:""
     };
   }
 
@@ -215,20 +217,38 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 const vision = require("@google-cloud/vision");
 const client = new vision.ImageAnnotatorClient({
-  keyFilename: '../key.json',
-  project_id: "YOUR-PROJECT-NAME"
+  keyFilename: '../key.json',
+  project_id: "perceptive-ivy-202402"
 });
 
 app.use(bodyParser.json());
 
 app.post("/upload", upload.single("myImage"), function(req, res) {
   client
+
     .webDetection(req.file.buffer)
     .then(results => {
+        console.log(results[0].textAnnotations);
       const webDetection = results[0].webDetection;
       var identification = { breed: webDetection.webEntities[0].description };
       console.log(webDetection.webEntities[0].description);
       res.json(webDetection.webEntities[0].description);
+    })
+    .catch(err => {
+      console.error("ERROR:", err);
+    });
+});
+
+
+app.post("/uploadText", upload.single("myImage"), function(req, res) {
+  client
+    .textDetection(req.file.buffer)
+    .then(results => {
+      console.log(results);
+      const textDetection = results[0].fullTextAnnotation;
+      var identificationT = { breed: textDetection.text};
+      console.log(textDetection.text);
+      res.json(textDetection.text);
     })
     .catch(err => {
       console.error("ERROR:", err);
@@ -245,25 +265,36 @@ This code creates an Express server that handles all of the POST requests to t
 
 4. Now, go back to your `App.js` file and add the following code in the return statement of your render function:
 ```react
-<div>
-  <header>
-    <h1>CS52's Google Cloud Vision Image Identifier Workshop!</h1>
-  </header>
-  <div className="uploadForm">
-     <h3>Upload Image</h3>
-     <input type="file"/>
-     <button onClick={this.postImg}>Click to identify</button>
-  </div>
-  <div />
-  <h3>{this.state.identification}</h3>
-</div>
+    <div>
+        <header>
+          <h1>Google Cloud Vision Image Identifier</h1>
+        </header>
+        <div className="uploadForm">
+          <h3>Upload Image</h3>
+          <input 
+            type="file"
+          />
+          <button className="button" onClick={this.postImg}>Click to identify</button>
+        </div>
+
+        <h3 style={{ marginTop: 50 }}>{this.state.identification}</h3>
+      <div className="uploadForm">
+        <h3 style={{ marginTop: 50 }}> Upload text Image</h3>
+        <input
+          type="file"
+        />
+        <button className="button" onClick={this.postImgText}>Click to identify</button>
+      </div>
+
+      <h3 style={{ marginTop: 50, marginBottom: 20 }}>{this.state.identificationT}</h3>
+    </div>
 ```
 
 These are just some basic HTML components to prepare to allow you to upload photos.
 
 5. Above the render function, add the following function:
 ```react
-postImg = () => {
+  postImg = () => {
     var formData = new FormData();
     formData.append("myImage", this.state.image);
     fetch("/upload", {
@@ -271,7 +302,7 @@ postImg = () => {
       body: formData
     })
       .then(response => {
-          if(response.status === 200) return response.json();
+          if(response.status === 200) {return response.json();}
           else {
             console.log(response);
             return { error: 'there was an error with response' }
@@ -279,19 +310,43 @@ postImg = () => {
       }).then(response => {
         if(response.error) { console.log(response); }
         else {
-          this.setState({ identification: response })
+
+          this.setState({ identification: response });
         }
       });
   };
+
+  postImgText = () => {
+    var formData = new FormData();
+    formData.append("myImage", this.state.imageT);
+    fetch("/uploadText", {
+      method: "POST",
+      body: formData
+    })
+      .then(response => {
+          if(response.status === 200) {return response.json();}
+          else {
+            console.log(response);
+            return { error: 'there was an error with response' }
+          }
+      }).then(response => {
+        if(response.error) { console.log(response); }
+        else {
+
+          this.setState({ identificationT: response });
+        }
+      });
+  };
+
 ```
 
-Uh oh, more HTTP requests 😰. This function actually isn't that complicated when you take another look at it. Can you guess what it does? `postImg` would be presumably called on some action and it takes in the current state of the uploaded image, converts it to an HTTP request-friendly format, and sends it via the response. The function then handles the response, either updating the state `identification` or console logging the error.
+Uh oh, more HTTP requests 😰. This function actually isn't that complicated when you take another look at it. Can you guess what it does? `postImg` would be presumably called on some action and it takes in the current state of the uploaded image, converts it to an HTTP request-friendly format, and sends it via the response. The function then handles the response, either updating the state `identification` or console logging the error. `postImgText` does the same thing, except it handles images with text in them.
 
-6. Now lets go back to the render function. You'll notice that the call to change the state of `image` isn't defined. Can you figure out how to add it in?
+6. Now lets go back to the render function. You'll notice that the call to change the state of `image` and `imageT` aren't defined. Can you figure out how to add them in?
 
 *Hint 1: when should the state change be called?
 
-*Hint 2: set the state of `image` to `e.target.files[0]`.
+*Hint 2: set the state of `image` and `imageT` to `e.target.files[0]`.
 
 If you can't figure it out, scroll to the bottom of the README for the answer 😅.
 
@@ -332,3 +387,4 @@ We've already added two buttons for you: Label Detection and OCR. Add another bu
 
 ### Answer to state change question
 ` <input type="file" onChange={e => this.setState({ image: e.target.files[0] })} />`
+`<input type="file" onChange={e => this.setState({ imageT: e.target.files[0] })} />`
