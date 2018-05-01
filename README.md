@@ -197,7 +197,9 @@ export default App;
 
 ## Summary / What you Learned
 
-* [ ] can be checkboxes
+* [ ] React recap
+* [ ] Implementing google cloud API
+* [ ] Pros and Cons of Google Cloud Vision
 
 ## Sources
 * This tutorial was based off of [this](https://github.com/brianhallerweb/google_cloud_vision_img_identifier) repo created by `brianhallerweb` on GitHub.
