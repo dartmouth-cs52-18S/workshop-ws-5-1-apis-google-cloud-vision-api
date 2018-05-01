@@ -2,7 +2,7 @@
 
 ![](Rimg/google.gif)
 
-In our presentation we talked about using different APIs like IBM'S Watson, Microsoft's Azure, and Google's Cloud Vision, to quickly add Artificial Intelligence to our applications. We want to introduce you to the Google Cloud API, which will allow you to get really cool, invaluavle insight from images.
+In our presentation we talked about using different APIs like IBM'S Watson, Microsoft's Azure, and Google's Cloud Vision, to quickly add Artificial Intelligence to our applications. We want to introduce you to the Google Cloud API, which will allow you to get really cool, invaluable insight from images.
 
 ## Overview
 
@@ -21,7 +21,7 @@ After verifying your email, you should receive another email with your coupon co
 
 ### Create New Project
 Now, create a new project in your google account by clicking [here](
-https://accounts.google.com/ServiceLogin/signinchooser?service=cloudconsole&passive=1209600&osid=1&continue=https%3A%2F%2Fconsole.cloud.google.com%2Fcloud-resource-manager%3F_ga%3D2.56200875.-1003825271.1520127443%26ref%3Dhttps%3A%2F%2Faccounts.google.com%2FLogout%3Fservice%253Dcloudconsole%2526continue%253Dhttps%3A%2F%2Fconsole.cloud.google.com%2Fcloud-resource-manager%3F_ga%25253D2.56200875.-1003825271.1520127443%2526hl%253Den_US&followup=https%3A%2F%2Fconsole.cloud.google.com%2Fcloud-resource-manager%3F_ga%3D2.56200875.-1003825271.1520127443%26ref%3Dhttps%3A%2F%2Faccounts.google.com%2FLogout%3Fservice%253Dcloudconsole%2526continue%253Dhttps%3A%2F%2Fconsole.cloud.google.com%2Fcloud-resource-manager%3F_ga%25253D2.56200875.-1003825271.1520127443%2526hl%253Den_US&flowName=GlifWebSignIn&flowEntry=ServiceLogin)
+https://accounts.google.com/ServiceLogin/signinchooser?service=cloudconsole&passive=1209600&osid=1&continue=https%3A%2F%2Fconsole.cloud.google.com%2Fcloud-resource-manager%3F_ga%3D2.56200875.-1003825271.1520127443%26ref%3Dhttps%3A%2F%2Faccounts.google.com%2FLogout%3Fservice%253Dcloudconsole%2526continue%253Dhttps%3A%2F%2Fconsole.cloud.google.com%2Fcloud-resource-manager%3F_ga%25253D2.56200875.-1003825271.1520127443%2526hl%253Den_US&followup=https%3A%2F%2Fconsole.cloud.google.com%2Fcloud-resource-manager%3F_ga%3D2.56200875.-1003825271.1520127443%26ref%3Dhttps%3A%2F%2Faccounts.google.com%2FLogout%3Fservice%253Dcloudconsole%2526continue%253Dhttps%3A%2F%2Fconsole.cloud.google.com%2Fcloud-resource-manager%3F_ga%25253D2.56200875.-1003825271.1520127443%2526hl%253Den_US&flowName=GlifWebSignIn&flowEntry=ServiceLogin).
 
 ### Enable billing for project 💸
 Go to [this](https://console.cloud.google.com/billing) link to see your billing accounts.
@@ -79,6 +79,10 @@ Go to the Create service account key page in the GCP Console: [Service account k
 
 Make sure your project name is showing at the top and it is the right project (ours is called demo).
 
+* if it doesn't work select `Credentials` from the left sidebar under `APIs & Services`
+* select the `Create Credentials` dropdown menu
+* click `Service Account Key`
+
 ![](Rimg/serviceKey.png)
 
 From the Service account drop-down list, select `New service account`.
@@ -90,7 +94,7 @@ From the Role drop-down list, select `Project > Owner`.
 Click `Create`. A JSON file that contains your key will download to your computer. Save the file in your forked repo root directory as `key.json`.
 
 ### Initial Environment Set-up/Checks:
-Check then npm version you have installed currently using `npm -v`
+Check then npm version you have installed currently using `node -v`
 If you don't have version `9.8.0` **you need to rollback your version. If you don't, the demo won't work.**
 Run the following in your terminal:
 
@@ -152,20 +156,22 @@ The Google API server will return a JSON file that looks something like this:
  In our case, the Express server is used to facilitate the client-server interaction between our app and the Google Cloud Vision API.
 
  Without further ado, let's get started!
- 
+
  ![](https://media.giphy.com/media/lJNoBCvQYp7nq/giphy-downsized-large.gif)
 
-1. In the `src` directory, create a file titled `index.js` and copy and paste the following code into the file:
+1. Don't forget to run `yarn`! In the `src` directory, create a file titled `index.js` and copy and paste the following code into the file:
 
 ```react
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 You should be a React expert by now, so you'll know that this file takes in an `App` component and renders the HTML element with the `#root` id with that component. We could put all of the React code into this file and the app would run just fine; however, as we've learned, it's better to include the `App` component in a separate file and render it from there because it keeps the app more organized.
+
+* have `.eslintrc` errors? try running `yarn add --dev eslint-config-airbnb`
 
 2. Also in the `src` directory, create an `App.js` file and copy and paste the following code into the file:
 
@@ -187,7 +193,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        Google Visiony things will be happening here soon 👀
+        Google Visiony things will be happening here soon
       </div>
     );
   }
@@ -202,7 +208,7 @@ No further explanation needed here – at this point, you should be able to crea
 
 (jk, it's actually an `npm` package called `react-scripts`)
 
-3. Now, make a new directory called `server` and in it, a new file called `server.js`. This is where our mini-Express server will go. Copy and paste the following code into the file:
+3. Now, make a new directory called `server` in the root directory and in it, a new file called `server.js`. This is where our mini-Express server will go. Run `yarn add --dev express` and opy and paste the following code into the file:
 
 ```react
 const express = require("express");
@@ -268,7 +274,7 @@ Each function here creates an Express server that handles all of the POST requ
         </header>
         <div className="uploadForm">
           <h3>Upload Image</h3>
-          <input 
+          <input
             type="file"
           />
           <button className="button" onClick={this.postImg}>Click to identify</button>
@@ -341,9 +347,9 @@ Uh oh, more HTTP requests 😰. This function actually isn't that complicated wh
 
 6. Now lets go back to the render function. You'll notice that the calls to change the state of `image` and `imageT` aren't defined. Can you figure out how to add them in?
 
-*Hint 1: when should the state change be called?
+* Hint 1: when should the state change be called?
 
-*Hint 2: set the state of `image` and `imageT` to `e.target.files[0]`.
+* Hint 2: set the state of `image` and `imageT` to `e.target.files[0]`.
 
 If you can't figure it out, scroll to the bottom of the README for the answer 😅.
 
@@ -357,9 +363,9 @@ Run `npm start` again in the root directory of your repo or refresh your browser
 
 ![](Rimg/fianl.png)
 
-Now, open a second tab in your terminal and `cd` into the `server` directory. Once there, run `node server.js`. This will run the server concurrently with your web app. Remember, the server handles all of your reuqests to the Google Vision API and needs to run in order for your images to be processed correctly. 
+Now, open a second tab in your terminal and `cd` into the `server` directory. Once there, run `node server.js`. This will run the server concurrently with your web app. Remember, the server handles all of your requests to the Google Vision API and needs to run in order for your images to be processed correctly.
 
-Navigate back to the browser tab and click on the first button. Upload any image (if you need an image, feel free to use the image of the dog we included earlier – it's in the `Rimg` directory in the repo). Then, click `Click to identify`. Voilà, after a few seconds, a tag will appear below the input fields, effectively identifying your image! Play around with different images and the other button that handles images with text (OCR) to get a feel for the API. 
+Navigate back to the browser tab and click on the first button. Upload any image (if you need an image, feel free to use the image of the dog we included earlier – it's in the `Rimg` directory in the repo). Then, click `Click to identify`. Voilà, after a few seconds, a tag will appear below the input fields, effectively identifying your image! Play around with different images and the other button that handles images with text (OCR) to get a feel for the API.
 
 ### Extra Credit ⭐
 We've already added two buttons for you: Label Detection and OCR. Add another button for face recognition and get it to work for additional bonus points! (For hints, look at the `server.js` code again and check out the [Google Vision API source code](https://github.com/googleapis/nodejs-vision/blob/master/samples/detect.js) for reference).
